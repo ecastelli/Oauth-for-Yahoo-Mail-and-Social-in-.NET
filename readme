@@ -1,1 +1,18 @@
 Visual Studio .NET 2008 project which shows how to use Oauth in making Yahoo! Mail SOAP API calls and Yahoo! Social API Calls.
+
+In order for this sample to work, you must sign up for an API key with Yahoo! at https://developer.apps.yahoo.com/dashboard/createKey.html.  The app type you want to select is the one that says "Create desktop and Web apps that use Yahoo! open authentication (OAuth) APIs."
+
+When creating a key, please make sure you set up read/write access for Yahoo! Mail and Yahoo! Contacts.
+
+Also, it is important that when you set up your key that you specify a the application URL where this project will be hosted.  This URL must be a public domain where Yahoo! can redirect authenticated requests to.  
+
+Once you create your API key and before you test this application, you will need to update the web.config with these values:
+
+<add key="OAUTHConsumerKey" value="YourKey.........."/>
+<add key="OAUTHConsumerSecret" value="YourSecrete........."/>
+<add key="OAUTHCallbackURL" value="http://yourdomain.com/auth.aspx"/>
+
+Debugging locally can be a little bit difficult since Yahoo! will not allow you to set an oauth_callback of any domain outside of the one you set up when you created the API key.  A work around is to put a response.write in the auth.aspx page that is on your public web server of the oauth_token and oauth_token_secret.  Then grab these values and plug the into your local copy on the same page.  Then navigate to PostAuthSamples.aspx to see the samples of parsing mail and adding to contacts.
+
+To open this project, Open Visual Studio 2008 and select "Open Website."  Then point to the folder you extracted the project files to.  Please note that default.aspx should be marked as the start page, as this is the page that kicks off the Oauth sequence.
+
